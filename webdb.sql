@@ -30,6 +30,15 @@ values (
     'female'
 );
 
+insert into users
+values (
+    seq_user_no.nextval,
+    'may0505',
+    '1234',
+    '차오월',
+    'male'
+);
+
 select *
 from users;
 
