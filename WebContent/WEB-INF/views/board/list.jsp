@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
+
 
 <!DOCTYPE html>
 <html>
@@ -46,7 +48,7 @@
 	
 				<div id="board">
 					<div id="list">
-						<form action="" method="">
+						<form action="" method="get">
 							<div class="form-group text-right">
 								<input type="text">
 								<button type="submit" id=btn_search>검색</button>
@@ -64,9 +66,15 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${bList}" var="board">
+								<c:forEach items="${bList}" var="board" varStatus="status">
 									<tr>
-										<td>${board.no}</td>
+										<!--<td>${board.no}</td>-->
+										
+										<td>${fn:length(bList)-status.index}</td>
+										
+										<!-- fn:length(item) 
+										item이 배열이나 컬렉션이면 요소의 개수를 문자열이면 문자의 개수를 반환 -->
+
 										<td><a href="/mysite/board?action=read&no=${board.no}">${board.title}</a></td>
 										<td>${board.name}</td>
 										<td>${board.hit}</td>
