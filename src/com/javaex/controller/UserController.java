@@ -105,7 +105,15 @@ public class UserController extends HttpServlet {
 		} else if("modifyForm".equals(action)) {
 			System.out.println("[UserController.modifyForm]");
 			
-			WebUtil.forward(request, response, "/WEB-INF/views/user/modifyForm.jsp");			
+			HttpSession session = request.getSession();
+			int no = ((UserVo)session.getAttribute("authUser")).getNo();
+			
+			UserDao userDao = new UserDao();
+			UserVo userVo = userDao.getUser(no);
+			
+			request.setAttribute("userVo", userVo);
+			
+			WebUtil.forward(request, response, "/WEB-INF/views/user/modifyForm.jsp");		
 					
 		} else if("modify".equals(action)) {
 			System.out.println("[UserController.modify]");
@@ -121,14 +129,10 @@ public class UserController extends HttpServlet {
 			
 			UserVo userVo = new UserVo(no, password, name, gender);
 			
-			int count = userDao.setUser(userVo);
+			userDao.setUser(userVo);
 			
 			
 			((UserVo)session.getAttribute("authUser")).setName(name);
-			((UserVo)session.getAttribute("authUser")).setPw(password);
-			((UserVo)session.getAttribute("authUser")).setGender(gender);
-			
-			
 			
 			//리다이렉트  -메인페이지
 			WebUtil.redirect(request, response, "/mysite/main");
