@@ -56,12 +56,11 @@ public class BoardDao {
 			}
 		}
 		
-		
-		//리스트
 		public List<BoardVo> boardList() {
 			return boardList("");
 		}
 		
+		//리스트
 		public List<BoardVo> boardList(String keyword) {
 			List<BoardVo> boardList = new ArrayList<BoardVo>();
 			
@@ -79,13 +78,11 @@ public class BoardDao {
 				
 
 				if (keyword != "" || keyword == null) {
-					query += " and b.title like ? ";
-					query += " or u.name like  ? ";
+					query += " and(b.title || u.name || b.content) like ? ";
 					query += " order by b.reg_date desc ";
 					pstmt = conn.prepareStatement(query); // 쿼리로 만들기
 
 					pstmt.setString(1, '%' + keyword + '%'); 
-					pstmt.setString(2, '%' + keyword + '%'); 
 				} else {
 					query += " order by b.reg_date desc ";
 					pstmt = conn.prepareStatement(query); // 쿼리로 만들기

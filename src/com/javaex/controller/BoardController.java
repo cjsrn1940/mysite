@@ -33,9 +33,18 @@ public class BoardController extends HttpServlet {
 			System.out.println("[리스트]");
 			
 			BoardDao boardDao = new BoardDao();
-			List<BoardVo> boardList = boardDao.boardList();
+		
+			List<BoardVo> boardList;
+			String keyword = request.getParameter("keyword");
+			
+			if(keyword != null) {
+				boardList = boardDao.boardList(keyword);
+			} else {
+				boardList = boardDao.boardList();
+			}
 			
 			request.setAttribute("bList", boardList);
+		
 			
 			WebUtil.forward(request, response, "/WEB-INF/views/board/list.jsp");
 			
