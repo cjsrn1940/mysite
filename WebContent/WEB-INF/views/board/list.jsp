@@ -71,10 +71,11 @@
 									<tr>
 										<!--<td>${board.no}</td>-->
 										
-										<td>${fn:length(bList)-status.index}</td>
-										
+										<!-- <td>${fn:length(bList)-status.index}</td> -->
 										<!-- fn:length(item) 
 										item이 배열이나 컬렉션이면 요소의 개수를 문자열이면 문자의 개수를 반환 -->
+										
+										<td>${sessionScope.size - status.index}</td>
 
 										<td><a href="/mysite/board?action=read&no=${board.no}">${board.title}</a></td>
 										<td>${board.name}</td>

@@ -44,7 +44,11 @@ public class BoardController extends HttpServlet {
 			}
 			
 			request.setAttribute("bList", boardList);
-		
+			
+			HttpSession session = request.getSession();
+			
+			int size = boardList.size();
+			session.setAttribute("size", size);
 			
 			WebUtil.forward(request, response, "/WEB-INF/views/board/list.jsp");
 			
