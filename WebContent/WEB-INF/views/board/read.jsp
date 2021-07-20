@@ -46,46 +46,44 @@
 	
 				<div id="board">
 					<div id="read">
-						<form action="#" method="get">
-							<!-- 작성자 -->
-							<div class="form-group">
-								<span class="form-text">작성자</span>
-								<span class="form-value">${board.name }</span>
-							</div>
-							
-							<!-- 조회수 -->
-							<div class="form-group">
-								<span class="form-text">조회수</span>
-								<span class="form-value">${board.hit}</span>
-							</div>
-							
-							<!-- 작성일 -->
-							<div class="form-group">
-								<span class="form-text">작성일</span>
-								<span class="form-value">${board.reg_date }</span>
-							</div>
-							
-							<!-- 제목 -->
-							<div class="form-group">
-								<span class="form-text">제 목</span>
-								<span class="form-value">${board.title }</span>
-							</div>
+				
+						<!-- 작성자 -->
+						<div class="form-group">
+							<span class="form-text">작성자</span>
+							<span class="form-value">${board.name }</span>
+						</div>
 						
-							<!-- 내용 -->
-							<div id="txt-content">
-								<span class="form-value" >
-									${board.content }
-								</span>
-							</div>
-							
-							<c:if test="${sessionScope.authUser.no eq board.user_no}">
-								<a id="btn_modify" href="/mysite/board?action=mForm&no=${board.no}">수정</a>
-							</c:if>
-							
-							<a id="btn_modify" href="/mysite/board?action=list">목록</a>
-							
-						</form>
-						<!-- //form -->
+						<!-- 조회수 -->
+						<div class="form-group">
+							<span class="form-text">조회수</span>
+							<span class="form-value">${board.hit}</span>
+						</div>
+						
+						<!-- 작성일 -->
+						<div class="form-group">
+							<span class="form-text">작성일</span>
+							<span class="form-value">${board.reg_date }</span>
+						</div>
+						
+						<!-- 제목 -->
+						<div class="form-group">
+							<span class="form-text">제 목</span>
+							<span class="form-value">${board.title }</span>
+						</div>
+					
+						<!-- 내용 -->
+						<div id="txt-content">
+							<span class="form-value" >
+								${board.content }
+							</span>
+						</div>
+						
+						<c:if test="${sessionScope.authUser.no eq board.user_no}">
+							<a id="btn_modify" href="/mysite/board?action=mForm&no=${board.no}">수정</a>
+						</c:if>
+						
+						<a id="btn_modify" href="/mysite/board?action=list">목록</a>
+						
 					</div>
 					<!-- //read -->
 				</div>
