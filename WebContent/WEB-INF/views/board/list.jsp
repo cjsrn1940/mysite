@@ -109,7 +109,10 @@
 							
 							<div class="clear"></div>
 						</div> -->
-						<a id="btn_write" href="/mysite/board?action=wForm">글쓰기</a>
+						
+						<c:if test="${!empty sessionScope.authUser.no}">
+							<a id="btn_write" href="/mysite/board?action=wForm">글쓰기</a>
+						</c:if>
 					
 					</div>
 					<!-- //list -->
