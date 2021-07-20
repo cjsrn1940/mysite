@@ -77,15 +77,15 @@ public class BoardDao {
 				query += " where b.user_no = u.no ";
 				
 
-				if (keyword != "" || keyword == null) {
+				if (keyword == null || keyword.equals("")) {//키워드가 없을 때  -- > null:
+					query += " order by b.reg_date desc ";
+					pstmt = conn.prepareStatement(query); // 쿼리로 만들기
+				} else {
 					query += " and(b.title || u.name || b.content) like ? ";
 					query += " order by b.reg_date desc ";
 					pstmt = conn.prepareStatement(query); // 쿼리로 만들기
 
 					pstmt.setString(1, '%' + keyword + '%'); 
-				} else {
-					query += " order by b.reg_date desc ";
-					pstmt = conn.prepareStatement(query); // 쿼리로 만들기
 				}
 
 				rs = pstmt.executeQuery();
